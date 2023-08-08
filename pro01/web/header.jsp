@@ -57,10 +57,10 @@
                     </ul>
                 </li>
                 <li class="item4">
-                    <a href="ad.html" class="dp1">홍보</a>
+                    <a href="/board/boardList.jsp" class="dp1">게시판</a>
                     <ul class="sub">
-                        <li><a href="ad.html#">언론보도</a></li>
-                        <li><a href="ad.html#">SNS</a></li>
+                        <li><a href="/board/boardList.jsp">공지사항</a></li>
+                        <li><a href="/qna/qnaList.jsp">QnA</a></li>
                         <li><a href="ad.html#">광고</a></li>
                         <li><a href="ad.html#">수상</a></li>
                     </ul>

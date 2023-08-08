@@ -52,9 +52,9 @@
     <link rel="icon" href="<%=path %>/images/logo_64.png" sizes="64x64">
 
  <script>
-  document.oncontextmenu = function () { return false;}
-  document.ondragstart = function () { return false;}
- document.onselectstart= function () { return false;}
+ //  document.oncontextmenu = function () { return false;}
+ //  document.ondragstart = function () { return false;}
+ // document.onselectstart= function () { return false;}
 
  </script>
 
