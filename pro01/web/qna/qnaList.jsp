@@ -165,7 +165,13 @@
                     });
                 </script>
                 <div class="btn_group">
+                    <%
+                        if(sid!=null) {
+                    %>
                     <a href="/qna/addQuestion.jsp?lev=0&par=0" class="inbtn">질문하기</a>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
         </section>

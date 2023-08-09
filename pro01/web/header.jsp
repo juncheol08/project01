@@ -8,6 +8,7 @@
         <nav class="tnb">
             <ul class="menu">
                 <% if(sid!=null) { %>
+                <li><%=sid %>님</li>
                 <li><a href="<%=path1 %>/member/logout.jsp">로그아웃</a></li>
                 <li><a href="<%=path1 %>/member/mypage.jsp">마이페이지</a></li>
                 <li><a href="map.jsp">오시는 길</a></li>

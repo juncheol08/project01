@@ -18,9 +18,9 @@
 
 
     // 조회수 증가
-//    pstmt = con.prepareStatement("UPDATE qna SET cnt=cnt+1 WHERE qno=?");
-//    pstmt.setInt(1,qno);
-//    rs=pstmt.executeQuery();
+    pstmt = con.prepareStatement("UPDATE qna SET cnt=cnt+1 WHERE qno=?");
+    pstmt.setInt(1,qno);
+    rs=pstmt.executeQuery();
 
     //4. sql 실행 및 실행결과 받기
     String sql = "SELECT a.qno AS qno, a.title AS title, a.content AS content, a.author AS author, a.resdate AS resdate, a.cnt AS cnt, a.lev AS lev, a.par AS par, b.name AS name " +
@@ -172,12 +172,12 @@
                                 <% } %>
                                 <% if(sid!=null && (sid.equals("admin") || sid.equals(qna.getAuthor()))) { %>
                                     <a href="/qna/updateQna.jsp?qno=<%=qna.getQno() %>"class="inbtn">질문 수정하기</a>
-                                    <a href="/qna/delQna.jsp?qno=<%=qna.getQno() %>"class="inbtn">질문 삭제하기</a>
+                                    <a href="/qna/delQna.jsp?qno=<%=qna.getQno() %>&lev=0"class="inbtn">질문 삭제하기</a>
                                 <% } %>
                             <% } else { %>
                                 <% if(sid!=null && (sid.equals("admin") || sid.equals(qna.getAuthor()))) { %>
                                     <a href="/qna/updateQna.jsp?qno=<%=qna.getQno() %>"class="inbtn">답변 수정하기</a>
-                                    <a href="/qna/delQna.jsp?qno=<%=qna.getQno() %>"class="inbtn">답변 삭제하기</a>
+                                    <a href="/qna/delQna.jsp?qno=<%=qna.getQno() %>&lev=1"class="inbtn">답변 삭제하기</a>
                                 <% } %>
                             <% }  %>
                             <a href="/qna/qnaList.jsp" class="inbtn">목록</a>

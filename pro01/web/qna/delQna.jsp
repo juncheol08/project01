@@ -9,6 +9,7 @@
     response.setCharacterEncoding("UTF-8");
 
     int qno = Integer.parseInt(request.getParameter("qno"));
+    int lev = Integer.parseInt(request.getParameter("lev"));
 
     Connection con = null;
     PreparedStatement pstmt = null;
@@ -18,7 +19,12 @@
     con = conn.connect();
 
     /* 4. SQL을 실행하여 처리된 건수 반환받기 */
-    String sql = "delete from board where qno=?";
+    String sql="";
+    if(lev==0) {
+        sql = "delete from qna where par=?";
+    } else {
+        sql = "delete from qna where qno=?";
+    }
     pstmt = con.prepareStatement(sql);
     pstmt.setInt(1, qno);
     int cnt = pstmt.executeUpdate();
@@ -26,8 +32,10 @@
     /* 5. 처리된 건수가 0보다 크면(성공처리가 되었으면) 목록 페이지로 이동하고,
     아니면(실패처리가 되었으면), 해당 글 상세보기로 이동한다. */
     if(cnt>0){
+        System.out.println("글이 삭제되었습니다.");
         response.sendRedirect("/qna/qnaList.jsp");
     } else {
+        System.out.println("글 삭제 실패");
         response.sendRedirect("/qna/getQna.jsp?qno="+qno);
     }
 
