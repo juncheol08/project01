@@ -124,8 +124,8 @@
                         frm.id.focus();
                         return;
                     }
-                    var pw = frm.pw;
-                    var pw2 = frm.pw2;
+                    var pw = frm.pw.value;
+                    var pw2 = frm.pw2.value;
                     if(pw!=pw2){
                         alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
                         pw.focus();

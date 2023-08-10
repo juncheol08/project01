@@ -2,7 +2,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.chunjae.db.*" %>
-<%@ page import="com.chunjae.dto.*" %>
+<%@ page import="java.security.*" %>
+<%@ page import="com.chunjae.util.AES256" %>
 <%
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html; charset=UTF-8");
@@ -10,6 +11,8 @@
 
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
+    pw = AES256.sha256(pw);
+
     String name = request.getParameter("name");
     String tel = request.getParameter("tel");
     String email = request.getParameter("email");
@@ -41,6 +44,6 @@
     } catch(SQLException e) {
         System.out.println("SQL 구문이 처리되지 못했습니다.");
     } finally {
-        con.close(rs, pstmt, conn);
+        con.close( pstmt, conn);
     }
 %>

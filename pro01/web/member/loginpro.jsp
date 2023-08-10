@@ -3,9 +3,11 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.chunjae.db.*" %>
 <%@ page import="com.chunjae.dto.*" %>
+<%@ page import="com.chunjae.util.AES256" %>
 <%
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
+    pw = AES256.sha256(pw);
 
     Connection conn = null;
     PreparedStatement pstmt = null;

@@ -6,6 +6,7 @@
 <%@ include file="/encoding.jsp"%>
 
 <%
+
     int lev = Integer.parseInt(request.getParameter("lev"));
     int par = Integer.parseInt(request.getParameter("par"));
     String title = request.getParameter("title");
