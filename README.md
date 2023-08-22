@@ -80,19 +80,34 @@
 #  💻 화면 구현
 🔹메인페이지
 ![1 메인화면](https://github.com/juncheol08/project01/assets/123594054/fad46fd5-d218-4b92-aacd-eddb857c942a)
-
+🔹 로그인
 <img width="1470" alt="2 로그인" src="https://github.com/juncheol08/project01/assets/123594054/6629ade5-67f2-477e-befd-d2ee17e0e8c2">
+🔹 회원가입 1
 <img width="1470" alt="3회원가입1" src="https://github.com/juncheol08/project01/assets/123594054/3f1cff67-31fa-4b41-b595-0153af6f04ee">
+🔹 회원가입 2
 <img width="873" alt="4회원가입2" src="https://github.com/juncheol08/project01/assets/123594054/7a19e487-f7fe-4382-820e-30b2576c77cf">
+🔹 마이페이지
 <img width="1251" alt="5마이페이지" src="https://github.com/juncheol08/project01/assets/123594054/bffecf73-a869-4664-9de3-ac8d1212751a">
+🔹 마이페이지 - 정보수정
 <img width="1251" alt="6마이페이지 정보수정" src="https://github.com/juncheol08/project01/assets/123594054/3d20f975-7438-4f1a-9e38-3e96812be0a0">
+🔹 고객센터 - 공지사항
 <img width="1251" alt="7고객센터 - 공지사항" src="https://github.com/juncheol08/project01/assets/123594054/f8a5056d-baf1-43f9-89bb-78814b6889df">
+🔹 고객센터 -FAQ
 <img width="1251" alt="8고객센터 - FAQ" src="https://github.com/juncheol08/project01/assets/123594054/87ef9977-03b5-4608-a033-04cce53d56cd">
+🔹 소개
 <img width="1209" alt="9소개" src="https://github.com/juncheol08/project01/assets/123594054/c8706909-1dd3-4a2b-b5ad-51402ff631d7">
+🔹 자유게시판
 <img width="1251" alt="10자유게시판 글 목록" src="https://github.com/juncheol08/project01/assets/123594054/602149ab-12de-4ada-aa4b-2e1e0de30f6e">
+🔹 게시글 상세 보기
 <img width="738" alt="11게시글 상세 보기" src="https://github.com/juncheol08/project01/assets/123594054/4ac640ff-cc46-401c-aaca-efb6c22c0f89">
+🔹 QnA게시판
 <img width="1251" alt="12문제 QNA" src="https://github.com/juncheol08/project01/assets/123594054/2f42fbb8-6d44-4c45-a26c-fe0876de3644">
+🔹 진로상담 게시판
 <img width="1251" alt="13진로상담" src="https://github.com/juncheol08/project01/assets/123594054/40d3d87c-2b4f-4f70-89dd-0690233f0e96">
+🔹 선생님이 아닌 경우 선생님 게시판 접근 시 알림
 <img width="457" alt="선생님 게시판 알림창" src="https://github.com/juncheol08/project01/assets/123594054/12204315-3def-442e-ab49-a994ed230a8a">
+🔹 진로상담 글 접근시 본인, 선생님이 아닌 경우 아닌 경우 알림
 <img width="457" alt="진로상담 알림창" src="https://github.com/juncheol08/project01/assets/123594054/8bae1f5f-517e-48ff-aabd-39063210ada3">
+🔹 학생이 아닌 경우 학생 게시판 접근 시 알림
 <img width="457" alt="학생게시판 알림창" src="https://github.com/juncheol08/project01/assets/123594054/0f81ff64-317e-4756-8a27-c391313b4212">
+
