@@ -102,12 +102,18 @@
 <img width="738" alt="11게시글 상세 보기" src="https://github.com/juncheol08/project01/assets/123594054/4ac640ff-cc46-401c-aaca-efb6c22c0f89">
 🔹 QnA게시판
 <img width="1251" alt="12문제 QNA" src="https://github.com/juncheol08/project01/assets/123594054/2f42fbb8-6d44-4c45-a26c-fe0876de3644">
+
 🔹 진로상담 게시판
 <img width="1251" alt="13진로상담" src="https://github.com/juncheol08/project01/assets/123594054/40d3d87c-2b4f-4f70-89dd-0690233f0e96">
-🔹 선생님이 아닌 경우 선생님 게시판 접근 시 알림
+
+🔹 선생님이 아닌 경우 선생님 게시판 접근 시 알림<br>
 <img width="457" alt="선생님 게시판 알림창" src="https://github.com/juncheol08/project01/assets/123594054/12204315-3def-442e-ab49-a994ed230a8a">
-🔹 진로상담 글 접근시 본인, 선생님이 아닌 경우 아닌 경우 알림
+
+🔹 진로상담 글 접근시 본인, 선생님이 아닌 경우 아닌 경우 알림<br>
 <img width="457" alt="진로상담 알림창" src="https://github.com/juncheol08/project01/assets/123594054/8bae1f5f-517e-48ff-aabd-39063210ada3">
-🔹 학생이 아닌 경우 학생 게시판 접근 시 알림
+
+🔹 학생이 아닌 경우 학생 게시판 접근 시 알림<br>
 <img width="457" alt="학생게시판 알림창" src="https://github.com/juncheol08/project01/assets/123594054/0f81ff64-317e-4756-8a27-c391313b4212">
+
+게시판별로 권한을 두어 구분하여 구현.
 
