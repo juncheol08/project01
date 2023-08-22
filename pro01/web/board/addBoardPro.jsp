@@ -1,40 +1,62 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%-- 1. 필요한 sql, db 패키지 임포트  --%>
-<%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.*" %>
-<%-- 2. 인코딩 및 보내온 데이터 받기 --%>
-<%
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
-    String title = request.getParameter("title");
-    String author = request.getParameter("author");
-    String content = request.getParameter("content");
+<%@ page import="com.chunjae.db.*"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ include file="/encoding.jsp"%>
 
-    //3. DB 접속
+<%
+    String author = (String) session.getAttribute("id");
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    DBC con = new MariaDBCon();
+
     Connection conn = null;
     PreparedStatement pstmt = null;
-    DBC con = new MariaDBCon();
-    conn = con.connect();
 
-    //4. SQL 구문 처리(insert문)
-    String sql = "insert into board(title, content, author) values (?, ?, ?)";
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, title);
-    pstmt.setString(2, content);
-    pstmt.setString(3, author);
+    // par 를 넣기전에 질문 게시글을 db에 저장
+    try {
+        conn = con.connect();
+        String sql = "INSERT INTO board(title, content, author, par) VALUES(?, ?, ?, ?) ";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, title);
+        pstmt.setString(2, content);
+        pstmt.setString(3, author);
+        pstmt.setInt(4, 0);
+        int cnt = pstmt.executeUpdate();
+        if(cnt > 0) {
+            System.out.println("질문 생성 완료");
+        } else {
+            System.out.println("질문 생성 실패");
+        }
+    } catch (SQLException e) {
+        System.out.println("질문 생성: sql 에러");
+    } catch (Exception e) {
 
-    //5. 처리된 결과의 건수를 반환받아 글등록이 성공되었으면, 목록 페이지로 이동(boardList.jsp)
-    //실패하면, 글쓰기(addBoard.jsp) 창으로 이동
-    int cnt = pstmt.executeUpdate();
-    String script = "<script>";
-    script += "history.go(-1);";
-    script += "</script>";
-    if(cnt>0){
-        response.sendRedirect("boardList.jsp");
-    } else {
-        //response.sendRedirect("addBoard.jsp");
-        out.println(script);
+    } finally {
+        con.close(pstmt, conn); // db commit(저장)
     }
-    con.close(pstmt, conn);
+
+    // 질문 게시글에 저장을 한 후 bno를 뽑아서 par에 저장
+    try {
+        conn = con.connect();
+        String sql = "update board set par=bno where par=0 and lev=0";
+        pstmt = conn.prepareStatement(sql);
+        int cnt = pstmt.executeUpdate();
+        if(cnt > 0) {
+            System.out.println("게시글 update 완료");
+//            response.sendRedirect("qnaList.jsp");
+            out.println("<script>alert('게시글 추가 성공')</script>");
+            out.println("<script>location.href='boardList.jsp'</script>");
+        } else {
+            System.out.println("게시글 update 실패");
+            out.println("<script>alert('게시글 추가 실패')</script>");
+            out.println("<script>history.back()</script>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    } finally {
+        con.close(pstmt, conn); // db commit(저장)
+    }
+
 %>

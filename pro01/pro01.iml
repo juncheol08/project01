@@ -21,7 +21,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javax.servlet.api" level="project" />
     <orderEntry type="library" name="mariadb.jdbc.java.client" level="project" />
-    <orderEntry type="library" name="sun.mail.javax" level="project" />
-    <orderEntry type="library" name="javax.mail.api" level="project" />
+    <orderEntry type="library" name="cos" level="project" />
+    <orderEntry type="library" name="commons.fileupload" level="project" />
+    <orderEntry type="library" name="commons.io" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

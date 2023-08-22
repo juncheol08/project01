@@ -1,36 +1,39 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.*" %>
+<%@ page import="com.chunjae.db.*"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ include file="/encoding.jsp"%>
+
 <%
-
-    String answer = request.getParameter("answer");
     String question = request.getParameter("question");
-
+    String answer = request.getParameter("answer");
+    DBC con = new MariaDBCon();
 
     Connection conn = null;
     PreparedStatement pstmt = null;
-    DBC con = new MariaDBCon();
-    conn = con.connect();
 
-    //4. SQL 구문 처리(insert문)
-    String sql = "insert into faq(question, answer) values (?, ?)";
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, question);
-    pstmt.setString(2, answer);
+    // FNQ 게시글을 db에 저장
+    try {
+        conn = con.connect();
+        String sql = "INSERT INTO faq(question, answer) VALUES(?, ?) ";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, question);
+        pstmt.setString(2, answer);
+        int cnt = pstmt.executeUpdate();
+        if(cnt > 0) {
+            System.out.println("FNQ 생성 완료");
+            response.sendRedirect("faqList.jsp");
+        } else {
+            System.out.println("FNQ 생성 실패");
+            response.sendRedirect("faqList.jsp");
+        }
+    } catch (SQLException e) {
+        System.out.println("FNQ 생성: sql 에러");
+    } catch (Exception e) {
 
-
-    int cnt = pstmt.executeUpdate();
-    String script = "<script>";
-    script += "history.go(-1);";
-    script += "</script>";
-    if(cnt>0){
-        response.sendRedirect("faqList.jsp");
-    } else {
-        //response.sendRedirect("addBoard.jsp");
-        out.println(script);
+    } finally {
+        con.close(pstmt, conn); // db commit(저장)
     }
-    con.close(pstmt, conn);
-
 
 %>

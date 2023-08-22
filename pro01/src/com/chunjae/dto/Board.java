@@ -7,6 +7,9 @@ public class Board {
     private String author;
     private String resdate;
     private int cnt;
+    private int lev;
+    private int par;
+    private String link;
 
     public int getBno() {
         return bno;
@@ -54,5 +57,29 @@ public class Board {
 
     public void setCnt(int cnt) {
         this.cnt = cnt;
+    }
+
+    public int getLev() {
+        return lev;
+    }
+
+    public void setLev(int lev) {
+        this.lev = lev;
+    }
+
+    public int getPar() {
+        return par;
+    }
+
+    public void setPar(int par) {
+        this.par = par;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

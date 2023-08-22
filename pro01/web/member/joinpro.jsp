@@ -1,26 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
 <%@ page import="com.chunjae.db.*" %>
-<%@ page import="java.security.*" %>
-<%@ page import="com.chunjae.util.AES256" %>
+<%@ include file="/encoding.jsp"%>
 <%
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
-
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
-    pw = AES256.sha256(pw);
-
     String name = request.getParameter("name");
     String tel = request.getParameter("tel");
     String email = request.getParameter("email");
+    int job = Integer.parseInt(request.getParameter("job"));
 
     Connection conn = null;
     PreparedStatement pstmt = null;
-    ResultSet rs = null;
     int cnt = 0;
+
     DBC con = new MariaDBCon();
     conn = con.connect();
     if(conn != null){
@@ -28,22 +21,23 @@
     }
 
     try {
-        String sql = "insert into member(id,pw,name,tel,email) values(?,?,?,?,?)";
+        String sql = "insert into member(id, pw, name, tel, email, job) values (?, ?, ?, ?, ?, ?)";
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, id);
         pstmt.setString(2, pw);
         pstmt.setString(3, name);
         pstmt.setString(4, tel);
         pstmt.setString(5, email);
+        pstmt.setInt(6, job);
         cnt = pstmt.executeUpdate();
-        if(cnt>0){
+        if(cnt > 0){ // 회원가입 성공했을 경우 로그인 페이지로 이동
             response.sendRedirect("/member/login.jsp");
-        } else {
+        } else { // 회원가입에 실패했을 경우 그대로
             response.sendRedirect("/member/join.jsp");
         }
     } catch(SQLException e) {
         System.out.println("SQL 구문이 처리되지 못했습니다.");
     } finally {
-        con.close( pstmt, conn);
+        con.close(pstmt, conn);
     }
 %>

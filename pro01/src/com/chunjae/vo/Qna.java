@@ -43,14 +43,6 @@ public class Qna {
         this.author = author;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getResdate() {
         return resdate;
     }
@@ -81,6 +73,14 @@ public class Qna {
 
     public void setPar(int par) {
         this.par = par;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

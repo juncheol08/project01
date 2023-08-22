@@ -27,3 +27,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+## 카카오맵 api
+web/api/
+
+# .idea/sonarlint

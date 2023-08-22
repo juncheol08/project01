@@ -3,11 +3,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.chunjae.db.*" %>
 <%@ page import="com.chunjae.dto.*" %>
-<%@ page import="com.chunjae.util.AES256" %>
 <%
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
-    pw = AES256.sha256(pw);
 
     Connection conn = null;
     PreparedStatement pstmt = null;
@@ -29,9 +27,12 @@
         if(rs.next()){
             session.setAttribute("id", id);
             session.setAttribute("name", rs.getString("name"));
-            response.sendRedirect("/");
+            session.setAttribute("job", rs.getString("job"));
+            out.println("<script>alert('로그인 성공')</script>");
+            out.println("<script>location.href='/index.jsp'</script>");
         } else {
-            response.sendRedirect("/member/login.jsp");
+            out.println("<script>alert('아이디 혹은 비밀번호가 일치하지 않거나 없습니다.')</script>");
+            out.println("<script>location.href='login.jsp'</script>");
         }
     } catch(SQLException e) {
         System.out.println("SQL 구문이 처리되지 못했습니다.");

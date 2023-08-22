@@ -8,6 +8,7 @@ public class Member {
     private String tel;
     private String regdate;
     private int point;
+    private int job;
 
     public String getId() {
         return id;
@@ -65,6 +66,14 @@ public class Member {
         this.point = point;
     }
 
+    public int getJob() {
+        return job;
+    }
+
+    public void setJob(int job) {
+        this.job = job;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -75,6 +84,7 @@ public class Member {
                 ", tel='" + tel + '\'' +
                 ", regdate='" + regdate + '\'' +
                 ", point=" + point +
+                ", job=" + job +
                 '}';
     }
 }

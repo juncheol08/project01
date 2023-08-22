@@ -1,38 +1,49 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%-- 1. 필요한 sql, db 패키지 임포트 --%>
-<%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.*" %>
+<%@ page import="com.chunjae.db.*"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ include file="/encoding.jsp"%>
 <%
-    /* 2. 인코딩 설정 및 보내온 데이터 받아오기 */
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
 
     int bno = Integer.parseInt(request.getParameter("bno"));
+    int lev = Integer.parseInt(request.getParameter("lev"));
     String title = request.getParameter("title");
     String content = request.getParameter("content");
+
+    DBC con = new MariaDBCon();
 
     Connection conn = null;
     PreparedStatement pstmt = null;
 
-    /* 3. DB 연결 */
-    DBC con = new MariaDBCon();
-    conn = con.connect();
-
-    /* 4. SQL을 실행하여 처리된 건수 반환받기 */
-    String sql = "update board set title=?, content=? where bno=?";
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, title);
-    pstmt.setString(2, content);
-    pstmt.setInt(3, bno);
-    int cnt = pstmt.executeUpdate();
-
-    /* 5. 처리된 건수가 0보다 크면(성공처리가 되었으면) 목록 페이지로 이동하고,
-    아니면(실패처리가 되었으면), 수정할 폼 화면으로 이동한다. */
-    if(cnt>0){
-        response.sendRedirect("/board/boardList.jsp");
-    } else {
-        response.sendRedirect("/board/updateBoard.jsp?bno="+bno);
+    try {
+        conn = con.connect();
+        String sql = "";
+        if(lev == 0) {
+            sql = "update board set title=?, content=? where bno=? and lev=0";
+        } else {
+            sql = "update board set title=?, content=? where bno=? and lev=1";
+        }
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, title);
+        pstmt.setString(2, content);
+        pstmt.setInt(3, bno);
+        int cnt = pstmt.executeUpdate();
+        if(cnt > 0) {
+            System.out.println("게시글 수정 완료");
+            out.println("<script>alert('게시글 수정 성공')</script>");
+            out.println("<script>location.href='boardList.jsp'</script>");
+//            response.sendRedirect("boardTeaList.jsp");
+        } else {
+            System.out.println("게시글 수정 실패");
+//            response.sendRedirect("updateQuestion.jsp?bno="+bno);
+            out.println("<script>alert('게시글 수정 실패')</script>");
+            out.println("<script>location.href='boardList.jsp'</script>"); //location
+        }
+    } catch (SQLException e) {
+        System.out.println("질문 수정: sql 에러");
+    } finally {
+        con.close(pstmt, conn);
     }
-    con.close(pstmt, conn);
+
 %>
